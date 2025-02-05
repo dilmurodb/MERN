@@ -108,8 +108,10 @@ const deleteUser = asyncHandler(async (req, res) => {
     }
 
     const result = await user.deleteOne()
-
-    const reply = `Username ${result.username} with ID ${result._id} deleted`
+   
+    const reply = result.acknowledged ? `Username ${user.username} with ID ${user._id} deleted` : `Username ${user.username} with ID ${user._id} not deleted`
+    
+    
 
     res.json(reply)
 
